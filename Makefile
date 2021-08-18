@@ -6,10 +6,7 @@ PREFIX ?= /usr
 
 all: divide-by-zero leak-memory seg-fault doc
 
-divide-by-zero: divide-by-zero.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $^
-
-leak-memory: leak-memory.c
+%: %.c noinline.h
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
 clean:
@@ -34,7 +31,7 @@ version:
 %.asc: %
 	gpg --armor --batch --detach-sign --yes --output $@ $^
 
-%.tar.xz: divide-by-zero.1.md divide-by-zero.c leak-memory.1.md leak-memory.c LICENSE Makefile NEWS README.md seg-fault.1.md seg-fault.c
+%.tar.xz: divide-by-zero.1.md divide-by-zero.c leak-memory.1.md leak-memory.c LICENSE Makefile NEWS noinline.h README.md seg-fault.1.md seg-fault.c
 	tar -cJf $@ --transform 's,^,chaos-marmosets-$(VERSION)/,' $^
 
 dist: chaos-marmosets-$(VERSION).tar.xz chaos-marmosets-$(VERSION).tar.xz.asc

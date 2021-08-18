@@ -17,7 +17,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int divide_by_zero() {
+#include "noinline.h"
+
+noinline int divide_by_zero() {
     int zero = 0;
 
     return 42 / zero;

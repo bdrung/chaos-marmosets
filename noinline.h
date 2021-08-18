@@ -14,23 +14,10 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "noinline.h"
-
-noinline void segmentation_fault() {
-    int *null_pointer = NULL;
-    *null_pointer = 42;
-}
-
-int main(int argc, char *argv[]) {
-    if(argc != 1) {
-        fprintf(stderr, "Usage: %s\n", argv[0]);
-        return EXIT_FAILURE;
-    }
-
-    segmentation_fault();
-
-    return EXIT_SUCCESS;
-}
+#ifdef __GNUC__
+  #define noinline __attribute__((__noinline__))
+#elif defined(__CLANG__) && __has_attribute(noinline)
+  #define noinline __attribute__((__noinline__))
+#elif !defined(noinline)
+  #define noinline
+#endif

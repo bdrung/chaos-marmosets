@@ -19,6 +19,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "noinline.h"
+
 #ifdef __GNUC__
 #define likely(x)   __builtin_expect((x),1)
 #define unlikely(x) __builtin_expect((x),0)
@@ -109,7 +111,7 @@ static char *format_size_base2(size_t size, const char *suffix) {
 }
 
 
-void leak_memory(size_t chunk_size, size_t max_memory_size, size_t progress_steps) {
+noinline void leak_memory(size_t chunk_size, size_t max_memory_size, size_t progress_steps) {
     size_t allocated = 0;
     size_t reported = 0;
     size_t *chunk = NULL;
