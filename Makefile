@@ -1,4 +1,4 @@
-VERSION = 0.1
+VERSION = 0.1.1
 
 CC ?= gcc
 CFLAGS ?= -std=gnu99 -Wall -Wextra -Werror -O3
