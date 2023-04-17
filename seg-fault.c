@@ -19,9 +19,10 @@
 
 #include "noinline.h"
 
-noinline void segmentation_fault() {
+noinline int *segmentation_fault() {
     int *null_pointer = NULL;
     *null_pointer = 42;
+    return null_pointer;
 }
 
 int main(int argc, char *argv[]) {
@@ -30,7 +31,7 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
-    segmentation_fault();
+    int *fourty_two = segmentation_fault();
 
-    return EXIT_SUCCESS;
+    return *fourty_two - 42;
 }
