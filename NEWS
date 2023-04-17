@@ -1,3 +1,7 @@
+chaos-marmosets 0.1.2 (2023-04-17)
+
+* seg-fault: Ensure NULL pointer is written to
+
 chaos-marmosets 0.1.1 (2021-08-18)
 
 * Do not inline functions that will crash
