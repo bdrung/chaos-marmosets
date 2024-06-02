@@ -15,6 +15,15 @@ configuration. See the Linux kernel sysctl setting `kernel.core_pattern` and
 system like [apport](https://wiki.ubuntu.com/Apport), this program allows
 testing reporting the crash and retracing it.
 
+divide-by-zero-python
+---------------------
+
+This program tries to divide a number by zero. It will immediately exit with a
+Python stack trace. This program is useful to test Python's `sys.excepthook` to
+handle crashes. In case of using a bug reporting system like
+[Apport](https://github.com/canonical/apport), this program allows testing
+reporting the crash.
+
 leak-memory
 -----------
 
